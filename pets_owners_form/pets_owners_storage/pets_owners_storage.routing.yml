@@ -1,0 +1,24 @@
+pets_owners_storage.show_form:
+  path: '/pets_owners_form'
+  defaults:
+    _title: 'Pets Owners Storage Form'
+    _form: '\Drupal\pets_owners_storage\Form\ShowStorageForm'
+  requirements:
+    _permission: 'access content'
+
+pets_owners_storage.show_data:
+  path: '/pets_owners_storage'
+  defaults:
+    _title: 'Pets Owners Data'
+    _controller: '\Drupal\pets_owners_storage\Controller\ShowStorage::display'
+  requirements:
+    _custom_access: '\Drupal\pets_owners_storage\Controller\ShowStorage::access'
+
+pets_owners_storage.delete:
+  path: '/pets_owners_storage/delete/{id}'
+  defaults:
+    _form: '\Drupal\pets_owners_storage\Form\ConfirmDeleteForm'
+    _title: 'Confirm Deletion'
+  requirements:
+    _custom_access: '\Drupal\pets_owners_storage\Controller\ShowStorage::access'
+    id: ^\d+$

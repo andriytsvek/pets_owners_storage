@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for module.
+ */
+
+
+/**
+ * Implementation of hook_schema(). Creating table 'pets_owners_storage' with fields: id, name, gender, prefix, age, father_name, mother_name, pets_bool, pets_names, email
+ */
+
+function pets_owners_storage_schema() {
+  $schema['pets_owners_storage'] = [
+    'fields' => [
+      'id' => [
+        'description' => 'The record id',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'description' => 'Pet owner name',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'gender' => [
+        'description' => 'Pet owner gender',
+        'type' => 'int',
+        'size' => 'tiny',
+        'default' => '2',
+      ],
+      'prefix' => [
+        'description' => 'Pet owner prefix',
+        'type' => 'int',
+        'size' => 'tiny',
+        'default' => '0',
+      ],
+      'age' => [
+        'description' => 'Pet owner age',
+        'type' => 'int',
+        'size' => 'tiny',
+      ],
+      'father_name' => [
+        'description' => 'Pet owner fathers name',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ],
+      'mother_name' => [
+        'description' => 'Pet owner mothers name',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ],
+      'pets_bool' => [
+        'description' => 'Have some pets?',
+        'type' => 'int',
+        'size' => 'tiny',
+        'default' => 0,
+      ],
+      'pets_names' => [
+        'description' => 'Pets name',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ],
+      'email' => [
+        'description' => 'Pet owner email',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => [
+      'id',
+    ],
+  ];
+
+  return $schema;
+}
