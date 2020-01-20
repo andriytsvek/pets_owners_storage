@@ -1,24 +1,47 @@
 pets_owners_storage.show_form:
-  path: '/pets_owners_form'
+  path: '/pets_owners/form'
   defaults:
     _title: 'Pets Owners Storage Form'
     _form: '\Drupal\pets_owners_storage\Form\ShowStorageForm'
   requirements:
     _permission: 'access content'
 
+pets_owners_storage.show_thankyou:
+  path: '/pets_owners/form/submitted'
+  defaults:
+    _title: 'Thank You'
+    _controller: '\Drupal\pets_owners_storage\Controller\ThankYouPage::thankyouPage'
+  requirements:
+    _permission: 'access content'
+
 pets_owners_storage.show_data:
-  path: '/pets_owners_storage'
+  path: '/admin/pets_owners'
   defaults:
     _title: 'Pets Owners Data'
-    _controller: '\Drupal\pets_owners_storage\Controller\ShowStorage::display'
+    _controller: '\Drupal\pets_owners_storage\Controller\ShowOwners::display'
   requirements:
-    _custom_access: '\Drupal\pets_owners_storage\Controller\ShowStorage::access'
+    _role: 'administrator'
+  options:
+    _admin_route: TRUE
 
-pets_owners_storage.delete:
-  path: '/pets_owners_storage/delete/{id}'
+pets_owners_storage.edit_form:
+  path: '/admin/pets_owners/edit/{id}'
   defaults:
-    _form: '\Drupal\pets_owners_storage\Form\ConfirmDeleteForm'
-    _title: 'Confirm Deletion'
+    _title: 'Edit Pet Owner'
+    _form: '\Drupal\pets_owners_storage\Form\EditForm'
   requirements:
-    _custom_access: '\Drupal\pets_owners_storage\Controller\ShowStorage::access'
+    _role: 'administrator'
     id: ^\d+$
+  options:
+    _admin_route: TRUE
+
+pets_owners_storage.delete_form:
+  path: '/admin/pets_owners/delete/{id}'
+  defaults:
+    _form: '\Drupal\pets_owners_storage\Form\DeleteForm'
+    _title: 'Delete Pet Owner'
+  requirements:
+    _role: 'administrator'
+    id: ^\d+$
+  options:
+    _admin_route: TRUE
